@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+     <section className="side-bar">
+      <button>＋ New Chat</button>
+      <ul className="history">
+        <li>Blugh</li>
+        </ul>
+        <nav>
+          <p>Made by Diego</p>
+        </nav>
+      
+     </section>
+     <section className="main">
+      <h1>DiegoGPT</h1>
+      <ul className="feed">
+
+      </ul>
+      <div className="bottom-section">
+        <div className="input-container">
+          <input />
+          <div id="submit">➢</div>
+        </div>
+        <p className="info">
+          Chat GPT April 27. Free research preview.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
+     </section>
     </div>
   );
 }
