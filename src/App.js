@@ -4,7 +4,7 @@ const App = () => {
   const [message, setMessage] = useState(null);
   const [value, setValue] = useState(null);
   const [previousChats, setPreviousChats] = useState([]);
-  const [currentTitle, setCurrentTitle] = useState([]);
+  const [currentTitle, setCurrentTitle] = useState(null);
 
   const getMessage = async () => {
     const options = {
@@ -62,7 +62,9 @@ const App = () => {
       <section className="main">
         <h1>DiegoGPT</h1>
         { !currentTitle && <h1>DiegoGPT</h1>}
-        <ul className="feed"></ul>
+        <ul className="feed">
+
+        </ul>
         <div className="bottom-section">
           <div className="input-container">
             <input value={value} onChange={(e) => setValue(e.target.value)} />
