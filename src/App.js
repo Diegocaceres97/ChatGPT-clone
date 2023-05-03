@@ -8,7 +8,6 @@ const App = () => {
 
 
   const getMessage = async () => {
-    console.log(process.env.API_KEY_OPENAI)
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -24,7 +23,6 @@ const App = () => {
         options
       );
       const data = await response.json();
-        console.log(data)
       setMessage(data?.choices[0]?.message);
     } catch (error) {
       console.error(error);
@@ -38,7 +36,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log(currentTitle, value, message);
     if (!currentTitle && value && message) {
       setCurrentTitle(value);
     }
