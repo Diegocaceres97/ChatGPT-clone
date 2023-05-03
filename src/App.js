@@ -6,7 +6,9 @@ const App = () => {
   const [previousChats, setPreviousChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState(null);
 
+
   const getMessage = async () => {
+    console.log(process.env.API_KEY_OPENAI)
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -22,12 +24,18 @@ const App = () => {
         options
       );
       const data = await response.json();
-
-      setMessage(data.choices[0].message);
+        console.log(data)
+      setMessage(data?.choices[0]?.message);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const createNewChat = () => {
+    setMessage(null);
+    setValue("");
+    setCurrentTitle("");
+  }
 
   useEffect(() => {
     console.log(currentTitle, value, message);
@@ -48,10 +56,14 @@ const App = () => {
     }
   }, [message, currentTitle]);
 
+  const currentChat = previousChats.filter(previousChat => previousChat.title === currentTitle)
+  const uniqueTittle = Array.from(new Set(previousChats.map(previousChat => previousChat.title)))
+
+  
   return (
     <div className="App">
       <section className="side-bar">
-        <button>＋ New Chat</button>
+        <button onClick={createNewChat}>＋ New Chat</button>
         <ul className="history">
           <li>Blugh</li>
         </ul>
@@ -60,10 +72,13 @@ const App = () => {
         </nav>
       </section>
       <section className="main">
-        <h1>DiegoGPT</h1>
+      
         { !currentTitle && <h1>DiegoGPT</h1>}
         <ul className="feed">
-
+          {currentChat.map((chatMessage, index) => <li key="index">
+            <p className="role">{chatMessage.role}</p>
+            <p>{chatMessage.message}</p>
+          </li>)}
         </ul>
         <div className="bottom-section">
           <div className="input-container">
